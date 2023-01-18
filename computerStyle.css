@@ -1,0 +1,224 @@
+
+#bankSection {
+    box-sizing: border-box;
+
+    position: fixed;
+    left: 500px;
+    top: 100px;
+    width: 225px;
+    height: 300px;
+
+    background: #E5E5E5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+#get_loan_button {
+    position: fixed;
+    left: 520px;
+    top: 330px;
+
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#repay_loan_button {
+    position: fixed;
+    left: 520px;
+    top: 330px;
+
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#bankSection h3{
+    position: relative;
+    padding-left: 10px;
+}
+
+#bankSection p{
+    position: relative;
+    padding-left: 10px;
+}
+
+#workSection {
+    box-sizing: border-box;
+
+    position: fixed;
+    left: 750px;
+    top: 100px;
+    width: 225px;
+    height: 300px;
+
+    background: #E5E5E5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+#bank_salary_button {
+    position: fixed;
+    left: 760px;
+    top: 330px;
+
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#pay_salary_button {
+    position: fixed;
+    left: 870px;
+    top: 330px;
+
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+#workSection h3{
+    position: relative;
+    padding-left: 10px;
+}
+
+#workSection p{
+    position: relative;
+    padding-left: 10px;
+}
+
+#laptopSelection {
+    box-sizing: border-box;
+
+    position: fixed;
+    left: 1000px;
+    top: 100px;
+    width: 225px;
+    height: 300px;
+
+    background: #E5E5E5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+#laptopSelection h3{
+    position: relative;
+    padding-left: 10px;
+}
+
+#laptopSelection p{
+    position: relative;
+    padding-left: 10px;
+}
+
+#computerFeature {
+    list-style: none;  
+}
+
+select {
+    position: relative;
+    padding: 4px 15px;
+    left: 10px;
+}
+
+#computerFeature li {
+    position: relative;
+    bottom: 10px; 
+    padding-left: 10px;  
+}
+
+#laptopInformation {
+    box-sizing: border-box;
+
+    position: fixed;
+    left: 500px;
+    top: 450px;
+    width: 725px;
+    height: 200px;
+
+    background: #E5E5E5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+#imageSource {
+
+    position: relative;
+
+    left: 20px;
+    top: 35px;
+    width: 128px;
+    height: 128px;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+}
+
+#computer_name{
+    position: relative;
+    width: 250px;
+    left: 160px;
+    top: -100px;
+}
+
+#computer_description{
+    position: relative;
+    width: 250px;    
+    left: 160px;
+    top: -100px;
+}
+
+#computer_price{
+    position: absolute;
+    left: 510px;
+    top: 32px;
+    font-size: 28px;
+}
+
+#computer_buy_now_button{
+
+    position: absolute;
+
+    left: 490px;
+    top: 120px;
+
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    padding: 12px 65px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
