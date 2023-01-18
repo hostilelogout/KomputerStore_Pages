@@ -61,7 +61,7 @@ function Bank() {
 
     this.balance = 0.0 // defines a float for holding the balance
     this.loanAmount = 0.0 // defines a float for holding how much loan you have
-    
+
     // deposit handle how the money gets inserted
     this.Deposit = function (amount) {
 
@@ -104,7 +104,7 @@ function Bank() {
         this.loanAmount = parseFloat(this.loanAmount + wantedLoanAmount)
         // adds the amount x wants to loan to bank balance
         this.balance = parseFloat(this.balance + wantedLoanAmount)
-        
+
         return true
     }
 
@@ -182,7 +182,7 @@ const HandleFeatureList = (e) => {
     const selectedComputer = computers[e.target.selectedIndex] // stores the selected computer
     currentOption = computers[e.target.selectedIndex] // stores the selected computer
     // runs through the specs of a computer
-    for (let index = 0; index < selectedComputer.specs.length; index++) { 
+    for (let index = 0; index < selectedComputer.specs.length; index++) {
         const element = document.createElement("li") // creates a new list element and store it
         element.value = index // give the element a value of index
         element.appendChild(document.createTextNode(selectedComputer.specs[index])) // creates a new text node with the text from computer specs based on the index
@@ -196,7 +196,7 @@ const HandleSelectedComputer = (e) => {
     currentOption = computers[e.target.selectedIndex] // stores the selected computer 
 
     // checks to see if the given image exist with jpeg, if not then check for png
-    fetch("https://hickory-quilled-actress.glitch.me/" + selectedComputer.image, { method: "HEAD" }) 
+    fetch("https://hickory-quilled-actress.glitch.me/" + selectedComputer.image, { method: "HEAD" })
         .then(res => {
             if (res.ok) {
                 AddAttribute(computerImageSource, "src", "https://hickory-quilled-actress.glitch.me/" + selectedComputer.image)
