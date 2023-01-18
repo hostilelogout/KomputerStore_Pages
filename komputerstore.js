@@ -83,49 +83,58 @@ function Bank() {
         this.balance += amount
 
     }
-
+    // internal function for the bank to handle new loans
     this.GetNewLoanBalance = function () {
+        // checks if loan is over 0 if so continue
         if (this.loanAmount > 0) {
             return alert("You Cannot take more then one hold. pay your current one back before taking a new one")
         }
-
+        // stores the amount x wants to loan for later use
         const wantedLoanAmount = parseFloat(prompt("How much do you want to loan"))
 
+        // checks if value actually contains anything or not and if not immediately return false
         if (isNaN(wantedLoanAmount)) return false
 
+        // checks to see if the amount x wants to loan is not more then 2 times the balance, otherwise return a alert
         if ((wantedLoanAmount) > (this.balance * 2)) {
             return alert("Unable to provide loan, cannot be more then double your current balance")
         }
 
+        // if all checks above succeed continue by adding the amount x wants to loan to their loan balance
         this.loanAmount = parseFloat(this.loanAmount + wantedLoanAmount)
+        // adds the amount x wants to loan to bank balance
         this.balance = parseFloat(this.balance + wantedLoanAmount)
+        
         return true
     }
 
+    // internal function for bank to handle repaying the loan
     this.RepayLoan = function (amount) {
-
+        // checks to see if the amount x wants to pay back is over the amount x already have 
         if (amount > this.loanAmount) {
-
+            // stores the remainder of amount and current loan
             let remainder = amount - this.loanAmount
-
+            // removes the amount from current pay
             newWork.RemovePayBalance(amount)
-
+            // ensures that loan gets zeroed out
             this.loanAmount -= this.loanAmount
-
+            // adds the remainder to the bank balance.
             this.Deposit(remainder)
 
         }
+        // if above fails then check if the amount x has as loan is over the amount one wants to pay
         else if (this.loanAmount >= amount) {
-
+            // removes amount from amount
             this.loanAmount -= amount
+            //removes the amount from pay balance
             newWork.RemovePayBalance(amount)
         }
 
     }
-
-    this.WithDrawBalance = function (amount) { this.balance -= amount }
-    this.GetBalance = function () { return this.balance }
-    this.GetLoanBalance = function () { return this.loanAmount }
+    // defines functions to allow usage outside the object 
+    this.WithDrawBalance = function (amount) { this.balance -= amount } // removes from balance based on amount
+    this.GetBalance = function () { return this.balance } // returns current amount of balance
+    this.GetLoanBalance = function () { return this.loanAmount } // returns current amount of loan
 
 }
 
