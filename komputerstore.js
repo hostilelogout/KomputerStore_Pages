@@ -138,19 +138,20 @@ function Bank() {
 
 }
 
-
+// defines object for work 
 function Work() {
-
+    // stores pay Balance
     let payBalance = 0
 
-    this.AddToPayBalance = function (amount) { payBalance += amount }
-    this.RemovePayBalance = function (amount) { return payBalance -= amount }
-    this.GetPayBalance = function () { return payBalance }
+    // defines functions to allow usage outside the object 
+    this.AddToPayBalance = function (amount) { payBalance += amount } // adds amount to pay balance
+    this.RemovePayBalance = function (amount) { return payBalance -= amount } // removes pay based on amount
+    this.GetPayBalance = function () { return payBalance } // returns current pay balance
 }
 
-
+// defines function for adding computers to a select list
 const AddComputerToList = (data) => {
-    
+    // runs a foreach loop on element to create a new computer object and store that object into the computers array
     data.forEach(element => {
 
         let newComputer = new Computers
@@ -165,36 +166,37 @@ const AddComputerToList = (data) => {
                 image = element.image
             )
 
-        const computerElement = document.createElement("option")
-        computerElement.value = element.id
-        computerElement.appendChild(document.createTextNode(element.title))
-        computerList.appendChild(computerElement)
+        const computerElement = document.createElement("option") // creates a element called option
+        computerElement.value = element.id // assign the id of the computer to the new element
+        computerElement.appendChild(document.createTextNode(element.title)) // adds a new textnode with a computers name to the option element
+        computerList.appendChild(computerElement) // adds the new element option to the select list 
 
-        computers.push(newComputer)
+        computers.push(newComputer) // adds the newComputer object to the array of computers
     });
-    HandleDefaultSelectedComputer(computers)
+    HandleDefaultSelectedComputer(computers) // defaults to the first computer in the array
 }
 
 const HandleFeatureList = (e) => {
-    ClearInnerHtml(computerFeatures)
+    ClearInnerHtml(computerFeatures) // clears the inner html 
 
-    const selectedComputer = computers[e.target.selectedIndex]
-    currentOption = computers[e.target.selectedIndex]
-    for (let index = 0; index < selectedComputer.specs.length; index++) {
-        const element = document.createElement("li")
-        element.value = index
-        element.appendChild(document.createTextNode(selectedComputer.specs[index]))
-        computerFeatures.appendChild(element)
+    const selectedComputer = computers[e.target.selectedIndex] // stores the selected computer
+    currentOption = computers[e.target.selectedIndex] // stores the selected computer
+    // runs through the specs of a computer
+    for (let index = 0; index < selectedComputer.specs.length; index++) { 
+        const element = document.createElement("li") // creates a new list element and store it
+        element.value = index // give the element a value of index
+        element.appendChild(document.createTextNode(selectedComputer.specs[index])) // creates a new text node with the text from computer specs based on the index
+        computerFeatures.appendChild(element) // adds the element to the actual select list so it can be displayed
     }
 
 }
 
 const HandleSelectedComputer = (e) => {
-    const selectedComputer = computers[e.target.selectedIndex]
-    currentOption = computers[e.target.selectedIndex]
+    const selectedComputer = computers[e.target.selectedIndex] // stores the selected computer
+    currentOption = computers[e.target.selectedIndex] // stores the selected computer 
 
-
-    fetch("https://hickory-quilled-actress.glitch.me/" + selectedComputer.image, { method: "HEAD" })
+    // checks to see if the given image exist with jpeg, if not then check for png
+    fetch("https://hickory-quilled-actress.glitch.me/" + selectedComputer.image, { method: "HEAD" }) 
         .then(res => {
             if (res.ok) {
                 AddAttribute(computerImageSource, "src", "https://hickory-quilled-actress.glitch.me/" + selectedComputer.image)
@@ -207,40 +209,41 @@ const HandleSelectedComputer = (e) => {
         })
         .catch(msg => console.log('Could not locate', msg))
 
-    computerNameElement.innerHTML = selectedComputer.title
-    computerDescriptionElement.innerHTML = selectedComputer.description
-    computerPriceElement.innerHTML = parseFloat(selectedComputer.price).toFixed(2) + " DK"
+    computerNameElement.innerHTML = selectedComputer.title // sets the inner html to that of the computers name
+    computerDescriptionElement.innerHTML = selectedComputer.description // sets a description of the computer
+    computerPriceElement.innerHTML = parseFloat(selectedComputer.price).toFixed(2) + " DK" // sets the price of a computer and fixes it to a 2 decimal unit
 }
 
 const DoWork = () => {
-    newWork.AddToPayBalance(100)
-    UpdatePayDisplay()
+    newWork.AddToPayBalance(100) // adds pay to pay balance
+    UpdatePayDisplay() // updates the pay display
 }
 
 const AddSalaryToBank = () => {
-    newBankAccount.Deposit(newWork.GetPayBalance())
-    newWork.RemovePayBalance(newWork.GetPayBalance())
+    newBankAccount.Deposit(newWork.GetPayBalance()) // deposits the pay to the bank
+    newWork.RemovePayBalance(newWork.GetPayBalance()) // removes pay from pay balance
 
+    // checks to see if loan balance is 0 or below if not continue
     if (newBankAccount.GetLoanBalance() <= 0) {
-        ChangeElementVisibility(repayLoanButtonElement, "hidden");
-        ChangeElementVisibility(loanBalance, "hidden")
-        ChangeElementVisibility(getLoanButtonElement, "visible");
+        ChangeElementVisibility(repayLoanButtonElement, "hidden"); // changes the visibility of repay to hidden
+        ChangeElementVisibility(loanBalance, "hidden") // changes the visibility of loan balance to hidden
+        ChangeElementVisibility(getLoanButtonElement, "visible"); // changes the visibility of loan button to show
     }
 
-    UpdatePayDisplay()
-    UpdateBankBalanceDisplay()
-    UpdateLoanBalanceDisplay()
+    UpdatePayDisplay() // updates Pay UI
+    UpdateBankBalanceDisplay() // updates bank balance UI
+    UpdateLoanBalanceDisplay() // updates loan balance UI
 }
 
 const GetLoan = () => {
     if (newBankAccount.GetNewLoanBalance() === true) {
 
-        ChangeElementVisibility(repayLoanButtonElement, "visible");
-        ChangeElementVisibility(loanBalance, "visible")
-        ChangeElementVisibility(getLoanButtonElement, "hidden");
+        ChangeElementVisibility(repayLoanButtonElement, "visible"); // changes the visibility of repay to show
+        ChangeElementVisibility(loanBalance, "visible") // changes the visibility of loan balance to show
+        ChangeElementVisibility(getLoanButtonElement, "hidden"); // changes the visibility of loan button to hidden
 
-        UpdateLoanBalanceDisplay()
-        UpdateBankBalanceDisplay()
+        UpdateBankBalanceDisplay() // updates bank balance UI
+        UpdateLoanBalanceDisplay() // updates loan balance UI
     }
 }
 
@@ -249,27 +252,27 @@ const PayLoan = () => {
     newBankAccount.RepayLoan(newWork.GetPayBalance())
 
     if (newBankAccount.GetLoanBalance() <= 0) {
-        ChangeElementVisibility(repayLoanButtonElement, "hidden");
-        ChangeElementVisibility(loanBalance, "hidden")
-        ChangeElementVisibility(getLoanButtonElement, "visible");
+        ChangeElementVisibility(repayLoanButtonElement, "hidden"); // changes the visibility of repay to hidden
+        ChangeElementVisibility(loanBalance, "hidden") // changes the visibility of loan balance to hidden
+        ChangeElementVisibility(getLoanButtonElement, "visible"); // changes the visibility of loan button to show
     }
 
-    UpdatePayDisplay()
-    UpdateBankBalanceDisplay()
-    UpdateLoanBalanceDisplay()
+    UpdatePayDisplay() // updates Pay UI
+    UpdateBankBalanceDisplay() // updates bank balance UI
+    UpdateLoanBalanceDisplay() // updates loan balance UI
 
 }
 
 const UpdatePayDisplay = () => {
-    paySalary.innerHTML = `Total Pay: ${newWork.GetPayBalance().toFixed(2)}`;
+    paySalary.innerHTML = `Total Pay: ${newWork.GetPayBalance().toFixed(2)}`; // Updates the UI and sets the value based on pay balance and calls toFixed in order to only show 2 Decimal units
 }
 
 const UpdateBankBalanceDisplay = () => {
-    totalBalance.innerHTML = `Total Balance: ${newBankAccount.GetBalance().toFixed(2)}`;
+    totalBalance.innerHTML = `Total Balance: ${newBankAccount.GetBalance().toFixed(2)}`;// Updates the UI and sets the value based on  balance and calls toFixed in order to only show 2 Decimal units
 }
 
 const UpdateLoanBalanceDisplay = () => {
-    loanBalance.innerHTML = `Loan Balance: ${newBankAccount.GetLoanBalance().toFixed(2)}`;
+    loanBalance.innerHTML = `Loan Balance: ${newBankAccount.GetLoanBalance().toFixed(2)}`; // Updates the UI and sets the value based on loan balance and calls toFixed in order to only show 2 Decimal units
 }
 
 const HandleDefaultSelectedComputer = (defaultComputer) => {
@@ -300,9 +303,12 @@ const HandleBuyComputer = () => {
     }
 }
 
+// Stores a new Work Object for global use
 const newWork = new Work();
+// Stores a Bank Object for global use
 const newBankAccount = new Bank();
 
+//#region Event Listeners
 pay_salary_button.addEventListener("click", DoWork);
 bankSalaryButton.addEventListener("click", AddSalaryToBank);
 getLoanButtonElement.addEventListener("click", GetLoan);
@@ -310,6 +316,8 @@ repayLoanButtonElement.addEventListener("click", PayLoan);
 computerList.addEventListener("change", HandleFeatureList);
 computerList.addEventListener("change", HandleSelectedComputer);
 computerBuyNowButton.addEventListener("click", HandleBuyComputer);
+//#endregion
 
-ChangeElementVisibility(repayLoanButtonElement, "hidden");
-ChangeElementVisibility(loanBalance, "hidden")
+// calls a function to change the desired element visibility 
+ChangeElementVisibility(repayLoanButtonElement, "hidden"); // changes the repay button to be hidden
+ChangeElementVisibility(loanBalance, "hidden") // changes the loan balance text to be hidden
